@@ -67,7 +67,7 @@ module StateMachine
       @name = name
       @qualified_name = name && machine.namespace ? :"#{machine.namespace}_#{name}" : name
       @human_name = options[:human_name] || (@name ? @name.to_s.tr('_', ' ') : 'nil')
-      @value = options.include?(:value) ? options[:value] : name && name.to_s
+      @value = options.include?(:value) ? options[:value] : name
       @cache = options[:cache]
       @matcher = options[:if]
       @methods = {}
