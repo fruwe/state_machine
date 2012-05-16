@@ -359,8 +359,8 @@ module StateMachine
         end
         
         # Checks for the existence of a db default for the machine's attribute
-        def owner_class_has_initial_state?
-          attribute_field && !attribute_field.default.nil?
+        def owner_class_has_initial_state? initial_state
+          attribute_field && !attribute_field.default.nil? && initial_state != attribute_field.default
         end
         
         # Gets the field for this machine's attribute (if it exists)

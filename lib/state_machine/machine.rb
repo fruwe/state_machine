@@ -635,7 +635,7 @@ module StateMachine
       
       # Output a warning if there are conflicting initial states for the machine's
       # attribute
-      if owner_class_has_initial_state?
+      if owner_class_has_initial_state?(new_initial_state)
         warn(
           "Both #{owner_class.name} and its #{name.inspect} machine have defined "\
           "a default for \"#{attribute}\". Use only one or the other for defining "\
@@ -2256,7 +2256,8 @@ module StateMachine
       
       # Whether the owner class already has an initial state defined for this
       # machine's attribute.  By default, this is always false.
-      def owner_class_has_initial_state?
+      # Compare with initial_state to see if different
+      def owner_class_has_initial_state? initial_state
         false
       end
       

@@ -373,9 +373,9 @@ module StateMachine
         end
         
         # Checks for the existence of a db default for the machine's attribute
-        def owner_class_has_initial_state?
+        def owner_class_has_initial_state? initial_state
           if owner_class.db.table_exists?(owner_class.table_name) && column = owner_class.db_schema[attribute.to_sym]
-            !column[:default].nil?
+            !column[:default].nil? && initial_state != column[:default]
           end
         end
         

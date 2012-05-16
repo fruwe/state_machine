@@ -304,8 +304,8 @@ module StateMachine
         end
         
         # Checks for the existence of a db default for the machine's attribute
-        def owner_class_has_initial_state?
-          attribute_key && !attribute_key.default_value.nil?
+        def owner_class_has_initial_state? initial_state
+          attribute_key && !attribute_key.default_value.nil? && initial_state != attribute_key.default_value
         end
         
         # Gets the Mongoid key for this machine's attribute (if it exists)

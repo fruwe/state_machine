@@ -425,9 +425,9 @@ module StateMachine
         end
         
         # Checks for the existence of a db default for the machine's attribute
-        def owner_class_has_initial_state?
+        def owner_class_has_initial_state? initial_state
           if owner_class.connected? && owner_class.table_exists? && column = owner_class.columns_hash[attribute.to_s]
-            !column.default.blank?
+            !column.default.blank? && initial_state != column.default
           end
         end
         
